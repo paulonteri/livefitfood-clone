@@ -19,6 +19,7 @@ body {
 /* Page content */
 .content {
   padding: 16px;
+  min-height: 100%;
 }
 
 /* The sticky class is added to the header with JS when it reaches its scroll position */
@@ -34,10 +35,7 @@ body {
 }
 
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  height: 50px;
   background-color: red;
   color: white;
   text-align: center;
