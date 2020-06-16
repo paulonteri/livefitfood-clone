@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 3.5em;
+}
+
+h3 {
+  font-size: 2em;
+}
+
+h5 {
+  font-size: 1.3em;
+}
+
+/* Style the header */
+.header {
+  padding: 10px 16px;
+  background: #555;
+  color: #f1f1f1;
+}
+
+/* Page content */
+.content {
+  min-height: 100%;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 102px;
+}
+
+.footer {
+  height: 50px;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+/* LANDING PAGE  */
+
+.content-block {
+  width: 100%;
+  height: 85vh;
+  background-color: aquamarine;
+}
+
+.landing-block {
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.call-to-action-btns {
+  margin-top: 2%;
+}
+
+.landing-page-grocery {
+  background-color: green;
+  height: 12vh;
+  width: 100%;
+  display: flex;
+  padding: auto 10%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-page-grocery-items {
+  margin: auto 1%;
+}
+
+.how-it-works-section {
+  background-color: yellowgreen;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.how-it-works-images {
+  margin: 6% auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.how-it-works-images img {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.work-box {
+  height: 170px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+  text-align: center;
+}
+
+.work-box img {
+  height: 140px;
+  width: 140px;
+}
+
+.towards-goals-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  align-content: space-evenly;
+}
+
+.towards-goals-section-item {
+  margin: 1% auto;
+}
+
+.menu-block {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-block-item {
+  margin: 1.5% auto;
+}
+
+.ready-to-eat-section {
+  background-color: darkorchid;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ready-to-eat-section h1 {
+  margin-bottom: 2%;
+}
