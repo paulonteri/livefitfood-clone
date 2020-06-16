@@ -47,7 +47,7 @@ app.get("/", function (req, res) {
 
 // PACKAGE LISTING
 app.get("/package-listing", function (req, res) {
-  res.render("package-listing");
+  res.render("package-listing", { topMealPackages: modelData.topMealPackages });
 });
 
 // PRODUCT DETAIL

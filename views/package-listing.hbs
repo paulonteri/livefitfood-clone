@@ -12,5 +12,15 @@
         </div>
         <button>View Package</button>
     </div>
-    <div class='package-listing-packages'></div>
+    <div class='package-listing-packages'>
+        {{#each topMealPackages}}
+        <div class='menu-items-container' id={{this.id}}>
+            <img src={{this.image}} alt="{{this.name}}" />
+            <p>{{this.name}}</p>
+            <p>{{this.description}}</p>
+            <button>View Package</button>
+            <p><i>from</i> {{this.price}}</p>
+        </div>
+        {{/each}}
+    </div>
 </div>

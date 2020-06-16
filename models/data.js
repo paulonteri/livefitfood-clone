@@ -1,4 +1,4 @@
-const topMealPackages = [
+const topMeals = [
   {
     id: 1,
     name: "Chicken Teriyaki",
@@ -49,6 +49,42 @@ const topMealPackages = [
   },
 ];
 
+const topMealPackages = [
+  {
+    id: 1,
+    name: "Weight Loss",
+    price: 145,
+    image: "./media/WEIGHTLOSS.jpg",
+    description:
+      "High protein, low-calorie meals with a nutrient profile tuned for weight loss",
+  },
+  {
+    id: 2,
+    name: "Muscle Gain",
+    price: 175,
+    image: "./media/MUSCLEGAIN.jpg",
+    description:
+      "Higher protein and calorie portions to support your muscle gain momentum",
+  },
+  {
+    id: 3,
+    name: "Keto",
+    price: 159,
+    image: "./media/KETO.jpg",
+    description:
+      "High fat, low carb meals with moderate protein to achieve and sustain ketosis",
+  },
+  {
+    id: 4,
+    name: "Fat Burner",
+    price: 145,
+    image: "./media/FATBURNER.jpg",
+    description:
+      "Low carb, nutrient-rich meals with fat-burning profiles to support fat loss",
+  },
+];
+
 module.exports = Object.freeze({
+  topMeals: topMeals,
   topMealPackages: topMealPackages,
 });
