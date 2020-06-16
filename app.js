@@ -11,13 +11,26 @@ app.engine(
   handlebars({
     layoutsDir: __dirname + "/views/layouts",
     extname: "hbs",
+    defaultLayout: "main",
   })
 );
 
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  res.render("home", { layout: "main" });
+  res.render("home");
+});
+
+app.get("/product", function (req, res) {
+  res.render("product-detail");
+});
+
+app.get("/login", function (req, res) {
+  res.render("login");
+});
+
+app.get("/register", function (req, res) {
+  res.render("register");
 });
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
