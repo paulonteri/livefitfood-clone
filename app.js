@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 7000;
+const port = 3000;
 
 const handlebars = require("express-handlebars");
 const modelData = require("./models/data");
@@ -15,6 +15,21 @@ app.engine(
     layoutsDir: __dirname + "/views/layouts",
     extname: "hbs",
     defaultLayout: "main",
+    helpers: {
+      block: function (name) {
+        var blocks = this._blocks,
+          content = blocks && blocks[name];
+
+        return content ? content.join("\n") : null;
+      },
+
+      contentFor: function (name, options) {
+        var blocks = this._blocks || (this._blocks = {}),
+          block = blocks[name] || (blocks[name] = []);
+
+        block.push(options.fn(this));
+      },
+    },
   })
 );
 
