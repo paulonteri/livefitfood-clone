@@ -35,7 +35,7 @@ app.engine(
 
 // HOME
 function getFoodList() {
-  return modelData.topMealPackages;
+  return modelData.topMeals;
 }
 
 app.get("/", function (req, res) {
@@ -43,6 +43,11 @@ app.get("/", function (req, res) {
     foodList: getFoodList(),
     menuListExists: true,
   });
+});
+
+// PACKAGE LISTING
+app.get("/package-listing", function (req, res) {
+  res.render("package-listing");
 });
 
 // PRODUCT DETAIL

@@ -201,3 +201,42 @@ p {
   max-height: 230px;
   max-width: 250px;
 }
+
+.package-listing-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45vh;
+  text-align: center;
+  padding: 3% auto 3%;
+  background-color: rebeccapurple;
+}
+
+.package-listing-content {
+  margin: auto 6%;
+}
+
+.package-listing-subheading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15vh;
+  text-align: center;
+  padding: 3% auto 3%;
+}
+
+.package-listing-value-package {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 17vh;
+  padding: 1% 3%;
+  background-color: yellow;
+  border-radius: 10px;
+}
+
+.package-listing-value-package div {
+  display: grid;
+  height: 100%;
+}
