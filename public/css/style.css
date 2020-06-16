@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800");
 
 * {
   margin: 0;
@@ -13,6 +13,7 @@ body {
 body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
+  font-weight: 500;
 }
 
 h1 {
@@ -25,6 +26,9 @@ h3 {
 
 h5 {
   font-size: 1.3em;
+}
+p {
+  font-size: large;
 }
 
 /* Style the header */
@@ -52,7 +56,7 @@ h5 {
 }
 
 .footer {
-  height: 50px;
+  height: 60vh;
   background-color: red;
   color: white;
   text-align: center;
@@ -170,4 +174,28 @@ h5 {
 
 .ready-to-eat-section h1 {
   margin-bottom: 2%;
+}
+
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 3%;
+  row-gap: 5%;
+  margin: 3% 5% 5%;
+  font-weight: 600;
+}
+
+.menu-items-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 250px;
+  width: 250px;
+  margin: 5%;
+  text-align: center;
+}
+
+.menu-items-container img {
+  height: 230px;
+  width: 250px;
 }
