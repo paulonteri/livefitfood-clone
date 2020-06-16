@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 7000;
 
 const handlebars = require("express-handlebars");
+const modelData = require("./models/data");
+
+app.use(express.static("public"));
 
 app.set("view engine", "hbs");
 
@@ -15,20 +18,29 @@ app.engine(
   })
 );
 
-app.use(express.static("public"));
+// HOME
+function getFoodList() {
+  return modelData.topMealPackages;
+}
 
 app.get("/", function (req, res) {
-  res.render("home");
+  res.render("home", {
+    foodList: getFoodList(),
+    menuListExists: true,
+  });
 });
 
+// PRODUCT DETAIL
 app.get("/product", function (req, res) {
   res.render("product-detail");
 });
 
+// LOGIN
 app.get("/login", function (req, res) {
   res.render("login");
 });
 
+// REGISTER
 app.get("/register", function (req, res) {
   res.render("register");
 });
