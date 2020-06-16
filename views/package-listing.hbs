@@ -14,9 +14,9 @@
     </div>
     <div class='package-listing-packages'>
         {{#each topMealPackages}}
-        <div class='menu-items-container' id={{this.id}}>
+        <div class='package-listing-packages-container' id={{this.id}}>
             <img src={{this.image}} alt="{{this.name}}" />
-            <p>{{this.name}}</p>
+            <h5>{{this.name}}</h5>
             <p>{{this.description}}</p>
             <button>View Package</button>
             <p><i>from</i> {{this.price}}</p>
