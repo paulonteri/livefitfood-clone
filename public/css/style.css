@@ -67,17 +67,19 @@ p {
 .content-block {
   width: 100%;
   height: 85vh;
-  background-color: aquamarine;
 }
 
 .landing-block {
-  background-color: blueviolet;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
   justify-content: center;
   align-items: center;
+  color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
 .call-to-action-btns {
@@ -100,7 +102,6 @@ p {
 }
 
 .how-it-works-section {
-  background-color: yellowgreen;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -146,6 +147,8 @@ p {
   justify-content: center;
   align-items: center;
   align-content: space-evenly;
+  background-attachment: fixed;
+  color: white;
 }
 
 .towards-goals-section-item {
@@ -164,13 +167,14 @@ p {
 }
 
 .ready-to-eat-section {
-  background-color: darkorchid;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  background-attachment: fixed;
+  color: white;
 }
 
 .ready-to-eat-section h1 {
@@ -200,86 +204,6 @@ p {
 .menu-items-container img {
   max-height: 230px;
   max-width: 250px;
-}
-
-/*  */
-/* PACKAGE LISTING  */
-/*  */
-
-.package-listing-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 45vh;
-  text-align: center;
-  padding: 3% auto 3%;
-  background-color: rebeccapurple;
-}
-
-.package-listing-content {
-  margin: auto 6%;
-}
-
-.package-listing-subheading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 15vh;
-  text-align: center;
-  padding: 3% auto 3%;
-}
-
-.package-listing-value-package {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 17vh;
-  padding: 1% 3%;
-  background-color: yellow;
-  border-radius: 10px;
-}
-
-.package-listing-value-package div {
-  display: grid;
-  height: 100%;
-}
-
-.package-listing-packages {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  object-fit: cover;
-  column-gap: 3%;
-  margin: 3% 0 6%;
-  padding: 1% 0;
-  width: 100%;
-  height: 95vh;
-}
-
-.package-listing-packages-container {
-  max-height: 400px;
-  max-width: 250px;
-  text-align: center;
-  padding: auto auto;
-}
-
-.package-listing-packages-container img {
-  max-height: 250px;
-  width: 100%;
-  border-radius: 5px;
-  align-self: stretch;
-}
-
-.package-listing-packages-container h5 {
-  margin: 2% auto;
-}
-
-.package-listing-packages-container button {
-  margin: 3% auto;
-}
-
-.package-listing-packages-container p {
-  font-size: medium;
 }
 
 /*  */
@@ -367,4 +291,86 @@ p {
 .container .info span a {
   color: #000000;
   text-decoration: none;
+}
+
+/*  */
+/* PACKAGE LISTING  */
+/*  */
+
+.package-listing-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45vh;
+  text-align: center;
+  padding: 3% auto 3%;
+  background-attachment: fixed;
+  color: white;
+}
+
+.package-listing-content {
+  margin: auto 6%;
+}
+
+.package-listing-subheading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15vh;
+  text-align: center;
+  padding: 3% auto 3%;
+}
+
+.package-listing-value-package {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 17vh;
+  padding: 1% 3%;
+  background-color: yellow;
+  border-radius: 10px;
+}
+
+.package-listing-value-package div {
+  display: grid;
+  height: 100%;
+  max-height: 400px;
+}
+
+.package-listing-packages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  object-fit: cover;
+  column-gap: 3%;
+  margin: 3% 0 2%;
+  padding: 1% 0;
+  width: 100%;
+  height: 80vh;
+}
+
+.package-listing-packages-container {
+  max-height: 350px;
+  max-width: 250px;
+  text-align: center;
+  padding: auto auto;
+}
+
+.package-listing-packages-container img {
+  max-height: 250px;
+  width: 100%;
+  border-radius: 5px;
+  align-self: stretch;
+}
+
+.package-listing-packages-container h5 {
+  margin: 2% auto;
+}
+
+.package-listing-packages-container button {
+  margin: 3% auto;
+}
+
+.package-listing-packages-container p {
+  font-size: medium;
 }
