@@ -10,7 +10,9 @@
             <h5>Value Package</h5>
             <p>All of our bestselling Value meals in one package for even less!</p>
         </div>
-        <button>View Package</button>
+        <div class="btn">
+            <p>View Package</p>
+        </div>
     </div>
     <div class='package-listing-packages'>
         {{#each topMealPackages}}
@@ -18,7 +20,9 @@
             <img src={{this.image}} alt="{{this.name}}" />
             <h5>{{this.name}}</h5>
             <p>{{this.description}}</p>
-            <button>View Package</button>
+            <div class="btn">
+                <p>View Package</p>
+            </div>
             <p><i>from</i> {{this.price}}</p>
         </div>
         {{/each}}

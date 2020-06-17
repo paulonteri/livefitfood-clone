@@ -60,6 +60,33 @@ p {
   text-align: center;
 }
 
+/* BUTTON  */
+.btn {
+  background-color: #ea455a;
+  color: #f2f2f2;
+  text-align: center;
+  width: 200px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.btn-lg {
+  background-color: #ea455a;
+  color: #f2f2f2;
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
 /*  */
 /* LANDING PAGE  */
 /*  */
@@ -84,6 +111,8 @@ p {
 
 .call-to-action-btns {
   margin-top: 2%;
+  display: flex;
+  flex-direction: row;
 }
 
 .landing-page-grocery {
