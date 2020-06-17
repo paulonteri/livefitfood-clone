@@ -4,7 +4,7 @@ Meal Delivery Website
 
 ## Introduction
 
- A website built to practical to gain experience in building 
+ A website built to gain experience in building 
  Dynamic websites and Server-Side Web applications using Node.js and Express.
  
  Inspired by the [Live Fit Food website](https://livefitfood.ca). 
