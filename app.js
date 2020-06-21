@@ -108,4 +108,72 @@ app.get("/register", function (req, res) {
   res.render("register");
 });
 
+app.post("/register", function (req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  const email = req.body.email;
+  var usernameError = false;
+  var usernameErrorMessage = "";
+  var passwordError = false;
+  var passwordErrorMessage = "";
+  var emailError = false;
+  var emailErrorMessage = "";
+
+  if (username) {
+    usernameReg = RegExp(/^[a-z0-9_-]{4,12}$/);
+    if (!usernameReg.test(username)) {
+      usernameError = true;
+      usernameErrorMessage =
+        "Username must be between 4-12 characters & Can only contain letters, numbers, dashes or underscores!";
+    }
+  } else {
+    usernameError = true;
+    usernameErrorMessage = "Username cannot be blank!";
+  }
+
+  if (password) {
+    passwordReg = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+    if (!passwordReg.test(password)) {
+      passwordError = true;
+      passwordErrorMessage =
+        "Password must contain a minimum eight characters, at least one letter and one number!";
+    }
+  } else {
+    passwordError = true;
+    passwordErrorMessage = "Password cannot be blank!";
+  }
+
+  if (email) {
+    emailReg = RegExp(
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gm
+    );
+    if (!emailReg.test(email)) {
+      emailError = true;
+      emailErrorMessage = "Invalid email!";
+    }
+  } else {
+    emailError = true;
+    emailErrorMessage = "Email cannot be blank!";
+  }
+
+  // Handle Errors
+  if (usernameError || passwordError || emailError) {
+    res.render("register", {
+      extraFormClasses: "invalid-form",
+      username: username,
+      usernameError: usernameError,
+      usernameErrorMessage: usernameErrorMessage,
+      email: email,
+      emailError: emailError,
+      emailErrorMessage: emailErrorMessage,
+      password: password,
+      passwordError: passwordError,
+      passwordErrorMessage: passwordErrorMessage,
+    });
+  } else {
+    res.redirect("/");
+  }
+  //
+});
+
 app.listen(port, () => console.log(`App listening to port ${port}`));
