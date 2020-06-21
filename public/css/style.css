@@ -460,6 +460,22 @@ a:hover {
   text-decoration: none;
 }
 
+.error-form {
+  font-size: smaller;
+  margin-bottom: 2px;
+  text-align: start;
+  color: red;
+}
+
+.invalid-form input {
+  margin: 0;
+  margin-bottom: 1px;
+  margin-top: 10px;
+}
+.invalid-form button {
+  margin-top: 10px;
+}
+
 /*  */
 /* PACKAGE LISTING  */
 /*  */

@@ -1,8 +1,28 @@
 <div class="login-page">
   <div class="form">
-    <form class="login-form" action="/login" method="post">
-      <input type="text" placeholder="username" name="username" />
-      <input type="password" placeholder="password" name="password" />
+    <form
+      class="login-form {{ extraFormClasses }}"
+      action="/login"
+      method="post"
+    >
+      <input
+        type="text"
+        placeholder="username"
+        name="username"
+        value="{{ username }}"
+      />
+      {{#if usernameError}}
+      <p class="error-form">{{ usernameErrorMessage }}</p>
+      {{/if}}
+      <input
+        type="password"
+        placeholder="password"
+        name="password"
+        value="{{ password }}"
+      />
+      {{#if passwordError}}
+      <p class="error-form">{{ passwordErrorMessage }}</p>
+      {{/if}}
       <button type="submit">login</button>
       <p class="message">
         Not registered? <a href="./register">Create an account</a>
