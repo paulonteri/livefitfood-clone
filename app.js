@@ -3,8 +3,11 @@ const app = express();
 const port = 3000;
 
 const handlebars = require("express-handlebars");
+// environment varaibles
+require("dotenv").config();
+
 const modelData = require("./models/data");
-const e = require("express");
+const mail = require("./services/mail");
 
 app.use(express.static("public"));
 
@@ -171,6 +174,7 @@ app.post("/register", function (req, res) {
       passwordErrorMessage: passwordErrorMessage,
     });
   } else {
+    mail.sendEmail(email);
     res.redirect("/");
   }
   //
