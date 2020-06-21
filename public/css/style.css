@@ -36,7 +36,7 @@ a {
 }
 
 .header {
-  padding: 10px 16px;
+  padding: 2px 16px;
   background-color: whitesmoke;
 }
 
@@ -105,7 +105,7 @@ a:hover {
   text-transform: uppercase;
   text-decoration: none;
   color: #1a1a1a;
-  padding: 20px;
+  padding: 14px;
   display: inline-block;
 }
 .site-nav .active a {
@@ -616,6 +616,10 @@ a:hover {
   .display-mobile {
     display: block;
   }
+
+  .header {
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -651,6 +655,10 @@ a:hover {
 
   .menu-items-container {
     margin: 20px;
+  }
+
+  .btn-lg {
+    width: 170px;
   }
 }
 

@@ -1,59 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Best Website</title>
-    <meta name="HandheldFriendly" content="True" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link
-      href="//fonts.googleapis.com/css?family=.|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold"
-      rel="stylesheet"
-      type="text/css"
-    />
-    {{{block "pageScripts"
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Best Website</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link
+    href="//fonts.googleapis.com/css?family=.|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold"
+    rel="stylesheet" type="text/css" />
+  {{{block "pageScripts"
     }}}
-  </head>
+</head>
 
-  <body>
-    <div class="header" id="myHeader">
-      <header class="site-header">
-        <a href="/" class="logo"
-          ><img
-            src="images/healthy-food.png"
-            width="50px"
-            height="50px"
-            alt="logo"
-        /></a>
+<body>
+  <div class="header" id="myHeader">
+    <header class="site-header">
+      <a href="/" class="logo"><img src="images/healthy-food.png" width="40px" height="40px" alt="logo" /></a>
 
-        <nav class="site-nav hide-mobile">
-          <ul>
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="./package-listing">Packages</a></li>
-          </ul>
-        </nav>
+      <nav class="site-nav hide-mobile">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="./package-listing">Packages</a></li>
+        </ul>
+      </nav>
 
-        <div class="actions hide-mobile">
-          <a href="./login" class="sign-out-link">Sign In</a>
-        </div>
-        <span id="menu-icon" class="menu actions display-mobile"
-          ><img src="images/menu.png" width="50px" height="50px" alt="logo"
-        /></span>
-      </header>
-    </div>
-    <div id="dropdown-menu">
-      <a class="menu-item" href="/"> <span> Home</span></a>
-      <a class="menu-item" href="./package-listing"> <span> Packages</span></a>
-      <a class="menu-item" href="./login"><span> Sign In</span></a>
-    </div>
-    <div class="content">{{{body}}}</div>
-    <div class="footer">
-      <p>© 2020 Yutope Inc.</p>
-    </div>
-    <script src="./js/index.js"></script>
-  </body>
+      <div class="actions hide-mobile">
+        <a href="./login" class="sign-out-link">Sign In</a>
+      </div>
+      <span id="menu-icon" class="menu actions display-mobile"><img src="images/menu.png" width="40px" height="40px"
+          alt="logo" /></span>
+    </header>
+  </div>
+  <div id="dropdown-menu">
+    <a class="menu-item" href="/"> <span> Home</span></a>
+    <a class="menu-item" href="./package-listing"> <span> Packages</span></a>
+    <a class="menu-item" href="./login"><span> Sign In</span></a>
+  </div>
+  <div class="content">{{{body}}}</div>
+  <div class="footer">
+    <p>© 2020 Yutope Inc.</p>
+  </div>
+  <script src="./js/index.js"></script>
+</body>
+
 </html>
