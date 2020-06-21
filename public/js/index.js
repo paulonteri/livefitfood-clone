@@ -18,23 +18,23 @@ window.onload = function () {
   //     header.classList.remove("sticky");
   //   }
   // }
-
-  function dropdownMenu() {
-    var x = document.getElementById("dropdown-menu");
-    if (x.style.display == "flex") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "flex";
-    }
-  }
-
-  document.getElementById("menu-icon").onclick = function changeContent() {
-    dropdownMenu();
-  };
-
-  var elements = document.getElementsByClassName("menu-item");
-
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].addEventListener("click", dropdownMenu, false);
-  }
 };
+
+function dropdownMenu() {
+  var x = document.getElementById("dropdown-menu");
+  if (x.style.display == "flex") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "flex";
+  }
+}
+
+document.getElementById("menu-icon").onclick = function changeContent() {
+  dropdownMenu();
+};
+
+var elements = document.getElementsByClassName("menu-item");
+
+for (var i = 0; i < elements.length; i++) {
+  elements[i].addEventListener("click", dropdownMenu, false);
+}
