@@ -6,6 +6,8 @@ const handlebars = require("express-handlebars");
 const modelData = require("./models/data");
 
 app.use(express.static("public"));
+// extract data from form in the POST request body.
+app.use(express.urlencoded());
 
 app.set("view engine", "hbs");
 
@@ -58,6 +60,11 @@ app.get("/product", function (req, res) {
 // LOGIN
 app.get("/login", function (req, res) {
   res.render("login");
+});
+
+app.post("/login", function (req, res) {
+  console.log(req.body);
+  res.end();
 });
 
 // REGISTER

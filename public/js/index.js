@@ -21,7 +21,6 @@ window.onload = function () {
 
   function dropdownMenu() {
     var x = document.getElementById("dropdown-menu");
-    console.log(x.style.display);
     if (x.style.display == "flex") {
       x.style.display = "none";
     } else {
@@ -34,7 +33,6 @@ window.onload = function () {
   };
 
   var elements = document.getElementsByClassName("menu-item");
-  console.log(elements);
 
   for (var i = 0; i < elements.length; i++) {
     elements[i].addEventListener("click", dropdownMenu, false);
