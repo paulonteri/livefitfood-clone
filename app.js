@@ -202,6 +202,9 @@ app.post("/register", function (req, res) {
   const lastName = req.body.lastName;
   const email = req.body.email;
   var isClerk = false;
+  if (req.body.clerk) {
+    isClerk = true;
+  }
   var usernameError = false;
   var usernameErrorMessage = "";
   var passwordError = false;
