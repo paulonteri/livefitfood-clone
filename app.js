@@ -327,7 +327,11 @@ app.post("/register", function (req, res) {
 
 mongoose
   .connect(
-    "mongodb+srv://test:test@cluster0.lf0dg.gcp.mongodb.net/testdb?retryWrites=true&w=majority",
+    "mongodb+srv://" +
+      process.env.DB_USER +
+      ":" +
+      process.env.DB_PASS +
+      "@cluster0.lf0dg.gcp.mongodb.net/testdb?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
