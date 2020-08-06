@@ -5,6 +5,14 @@
             {{#if usernameError}}
             <p class="error-form">{{ usernameErrorMessage }}</p>
             {{/if}}
+            <input type="firstName" placeholder="firstName" name="firstName" value="{{ firstName }}" />
+            {{#if firstNameError}}
+            <p class="error-form">{{ firstNameErrorMessage }}</p>
+            {{/if}}
+            <input type="lastName" placeholder="lastName" name="lastName" value="{{ lastName }}" />
+            {{#if lastNameError}}
+            <p class="error-form">{{ lastNameErrorMessage }}</p>
+            {{/if}}
             <input type="password" placeholder="password" name="password" value="{{ password }}" />
             {{#if passwordError}}
             <p class="error-form">{{ passwordErrorMessage }}</p>

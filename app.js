@@ -121,12 +121,18 @@ app.get("/register", function (req, res) {
 app.post("/register", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const email = req.body.email;
   var isClerk = false;
   var usernameError = false;
   var usernameErrorMessage = "";
   var passwordError = false;
   var passwordErrorMessage = "";
+  var firstNameError = false;
+  var firstNameErrorMessage = "";
+  var lastNameError = false;
+  var lastNameErrorMessage = "";
   var emailError = false;
   var emailErrorMessage = "";
 
@@ -154,6 +160,20 @@ app.post("/register", function (req, res) {
     passwordErrorMessage = "Password cannot be blank!";
   }
 
+  if (firstName) {
+    //
+  } else {
+    firstNameError = true;
+    firstNameErrorMessage = "First Name cannot be blank!";
+  }
+
+  if (lastName) {
+    //
+  } else {
+    lastNameError = true;
+    lastNameErrorMessage = "Last Name cannot be blank!";
+  }
+
   if (email) {
     emailReg = RegExp(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gm
@@ -168,7 +188,13 @@ app.post("/register", function (req, res) {
   }
 
   // Handle Errors
-  if (usernameError || passwordError || emailError) {
+  if (
+    usernameError ||
+    passwordError ||
+    emailError ||
+    firstNameError ||
+    lastNameError
+  ) {
     res.render("register", {
       extraFormClasses: "invalid-form",
       username: username,
@@ -180,6 +206,12 @@ app.post("/register", function (req, res) {
       password: password,
       passwordError: passwordError,
       passwordErrorMessage: passwordErrorMessage,
+      firstName: firstName,
+      firstNameError: firstNameError,
+      firstNameErrorMessage: firstNameErrorMessage,
+      lastName: lastName,
+      lastNameError: lastNameError,
+      lastNameErrorMessage: lastNameErrorMessage,
     });
   } else {
     bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -190,6 +222,8 @@ app.post("/register", function (req, res) {
             _id: new mongoose.Types.ObjectId(),
             username: username,
             password: hash,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             isClerk: isClerk,
           });
