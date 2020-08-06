@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+mongoose = require("mongoose");
 
 const handlebars = require("express-handlebars");
 // environment varaibles
@@ -8,6 +9,8 @@ require("dotenv").config();
 
 const modelData = require("./models/data");
 const mail = require("./services/mail");
+
+const User = require("./models/users");
 
 app.use(express.static("public"));
 
@@ -115,6 +118,7 @@ app.post("/register", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
+  var isClerk = false;
   var usernameError = false;
   var usernameErrorMessage = "";
   var passwordError = false;
@@ -174,10 +178,46 @@ app.post("/register", function (req, res) {
       passwordErrorMessage: passwordErrorMessage,
     });
   } else {
-    mail.sendEmail(email);
-    res.redirect("/");
+    user = new User({
+      _id: new mongoose.Types.ObjectId(),
+      username: username,
+      password: password,
+      email: email,
+      isClerk: isClerk,
+    });
+    user
+      .save()
+      .then((obj) => {
+        console.log("User created");
+        console.log(obj);
+        // mail.sendEmail(email);
+        res.redirect("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   //
 });
 
-app.listen(port, () => console.log(`App listening to port ${port}`));
+mongoose
+  .connect(
+    "mongodb+srv://test:test@cluster0.lf0dg.gcp.mongodb.net/testdb?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => {
+    app.listen(port, () =>
+      console.log(`App listening to port http://localhost:${port}`)
+    );
+  })
+  .catch((err) => {
+    console.log(err);
+    console.log("Error");
+  });
+
+mongoose.connection.on("connected", () => {
+  console.log("Mongoose is connected!!!!");
+});
