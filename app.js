@@ -1,7 +1,11 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
-mongoose = require("mongoose");
+
+const mongoose = require("mongoose");
+
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const handlebars = require("express-handlebars");
 // environment varaibles
@@ -178,24 +182,34 @@ app.post("/register", function (req, res) {
       passwordErrorMessage: passwordErrorMessage,
     });
   } else {
-    user = new User({
-      _id: new mongoose.Types.ObjectId(),
-      username: username,
-      password: password,
-      email: email,
-      isClerk: isClerk,
-    });
-    user
-      .save()
-      .then((obj) => {
-        console.log("User created");
-        console.log(obj);
-        // mail.sendEmail(email);
-        res.redirect("/");
-      })
-      .catch((err) => {
-        console.log(err);
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        // Now we can store the password hash in db.
+        if (hash) {
+          user = new User({
+            _id: new mongoose.Types.ObjectId(),
+            username: username,
+            password: hash,
+            email: email,
+            isClerk: isClerk,
+          });
+          user
+            .save()
+            .then((obj) => {
+              console.log("User created");
+              console.log(obj);
+              // mail.sendEmail(email);
+              res.redirect("/");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          // error handling
+          res.end();
+        }
       });
+    });
   }
   //
 });
