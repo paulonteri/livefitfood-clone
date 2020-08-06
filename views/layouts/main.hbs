@@ -26,10 +26,17 @@
           <li><a href="./package-listing">Packages</a></li>
         </ul>
       </nav>
+      {{#if firstName}}
 
+      <div class="actions hide-mobile">
+        <p>{{firstName}} {{lastName}}</p>
+        <a href="./logout" class="sign-out-link">Logout</a>
+      </div>
+      {{else}}
       <div class="actions hide-mobile">
         <a href="./login" class="sign-out-link">Sign In</a>
       </div>
+      {{/if}}
       <span id="menu-icon" class="menu actions display-mobile"><img src="images/menu.png" width="40px" height="40px"
           alt="logo" /></span>
     </header>

@@ -58,10 +58,16 @@ function getFoodList() {
 }
 
 app.get("/", function (req, res) {
-  res.render("home", {
+  var conte = {
     foodList: getFoodList(),
     menuListExists: true,
-  });
+  };
+  if (ssn && ssn.user) {
+    conte.firstName = ssn.user.firstName;
+    conte.lastName = ssn.user.lastName;
+  }
+
+  res.render("home", conte);
 });
 
 // PACKAGE LISTING
@@ -79,10 +85,17 @@ app.get("/login", function (req, res) {
   res.render("login");
 });
 
+// LOGOUT
+app.get("/logout", function (req, res) {
+  ssn.user = null;
+  res.redirect("/");
+});
+
 app.post("/login", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
   var usernameError = false;
+  var failed = false;
   var usernameErrorMessage = "";
   var passwordError = false;
   var passwordErrorMessage = "";
@@ -91,6 +104,7 @@ app.post("/login", function (req, res) {
     // validation
   } else {
     usernameError = true;
+    failed = true;
     usernameErrorMessage = "Username cannot be blank!";
   }
 
@@ -98,12 +112,14 @@ app.post("/login", function (req, res) {
     // validation
   } else {
     passwordError = true;
+    failed = true;
     passwordErrorMessage = "Password cannot be blank!";
   }
 
   // Handle Errors
   if (usernameError || passwordError) {
     //
+    console.log("Error");
 
     res.render("login", {
       extraFormClasses: "invalid-form",
@@ -114,6 +130,8 @@ app.post("/login", function (req, res) {
       passwordError: passwordError,
       passwordErrorMessage: passwordErrorMessage,
     });
+    res.end();
+    return;
   } else {
     User.findOne({ username: username })
       .then((u) => {
@@ -121,17 +139,21 @@ app.post("/login", function (req, res) {
           if (response == true) {
             ssn = req.session;
             ssn.user = u;
-            return res.redirect("/");
+            res.redirect("/");
+            return;
           }
           // else wrong password
+          failed = true;
         });
       })
       .catch((err) => {
+        failed = true;
         console.log(err);
       });
   }
-  //
-  res.render("login", { ERROR: true });
+  if (failed) {
+    res.render("login", { ERROR: true });
+  }
 });
 
 // REGISTER
