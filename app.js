@@ -75,6 +75,40 @@ app.get("/package-listing", function (req, res) {
   res.render("package-listing", { topMealPackages: modelData.topMealPackages });
 });
 
+// CUSTOMER DASHBOARD
+app.get("/customer-dashboard", function (req, res) {
+  if (ssn && ssn.user) {
+    if (ssn.user.isClerk) {
+      res.redirect("/clerk-dashboard");
+    } else {
+      res.render("customer-dashboard", {
+        topMealPackages: modelData.topMealPackages,
+        firstName: ssn.user.firstName,
+        lastName: ssn.user.lastName,
+      });
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
+// CUSTOMER DASHBOARD
+app.get("/clerk-dashboard", function (req, res) {
+  if (ssn && ssn.user) {
+    if (ssn.user.isClerk) {
+      res.redirect("/customer-dashboard");
+    } else {
+      res.render("clerk-dashboard", {
+        topMealPackages: modelData.topMealPackages,
+        firstName: ssn.user.firstName,
+        lastName: ssn.user.lastName,
+      });
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
 // PRODUCT DETAIL
 app.get("/product", function (req, res) {
   res.render("product-detail");

@@ -26,7 +26,6 @@
     "nodemon": "^2.0.4"
   },
   "nodemonConfig": {
-    "ext": "hbs",
-    "delay": "3"
+    "delay": "1"
   }
 }

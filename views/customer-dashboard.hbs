@@ -1,0 +1,26 @@
+<div class="content-block">
+    <header class="package-listing-header" style="background-image: url('./images/pink.png');">
+        <h1>User {{firstName}}'s dashboard</h1>
+    </header>
+    <div class="package-listing-content">
+        <div class="package-listing-subheading">
+            <h5>
+                Your Items
+            </h5>
+        </div>
+
+        <div class="package-listing-packages">
+            {{#each topMealPackages}}
+            <div class="package-listing-packages-container" id="{{ this.id }}">
+                <img src="{{ this.image }}" alt="{{ this.name }}" />
+                <h5>{{ this.name }}</h5>
+                <p>{{ this.description }}</p>
+                <div class="btn">
+                    <p>View Package</p>
+                </div>
+                <p><i>from</i> {{ this.price }}</p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
