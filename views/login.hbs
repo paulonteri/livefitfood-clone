@@ -1,25 +1,14 @@
 <div class="login-page">
   <div class="form">
-    <form
-      class="login-form {{ extraFormClasses }}"
-      action="/login"
-      method="post"
-    >
-      <input
-        type="text"
-        placeholder="username"
-        name="username"
-        value="{{ username }}"
-      />
+    <form class="login-form {{ extraFormClasses }}" action="/login" method="post">
+      {{#if ERROR}}
+      <p class="error-form">Sorry, you entered the wrong email and/or password</p>
+      {{/if}}
+      <input type="text" placeholder="username" name="username" value="{{ username }}" />
       {{#if usernameError}}
       <p class="error-form">{{ usernameErrorMessage }}</p>
       {{/if}}
-      <input
-        type="password"
-        placeholder="password"
-        name="password"
-        value="{{ password }}"
-      />
+      <input type="password" placeholder="password" name="password" value="{{ password }}" />
       {{#if passwordError}}
       <p class="error-form">{{ passwordErrorMessage }}</p>
       {{/if}}

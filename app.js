@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
+var session = require("express-session");
+app.use(session({ secret: "ONTERI" }));
+
 const mongoose = require("mongoose");
 
 const bcrypt = require("bcrypt");
@@ -15,6 +18,8 @@ const modelData = require("./models/data");
 const mail = require("./services/mail");
 
 const User = require("./models/users");
+
+var ssn;
 
 app.use(express.static("public"));
 
@@ -98,6 +103,8 @@ app.post("/login", function (req, res) {
 
   // Handle Errors
   if (usernameError || passwordError) {
+    //
+
     res.render("login", {
       extraFormClasses: "invalid-form",
       username: username,
@@ -108,9 +115,23 @@ app.post("/login", function (req, res) {
       passwordErrorMessage: passwordErrorMessage,
     });
   } else {
-    res.redirect("/");
+    User.findOne({ username: username })
+      .then((u) => {
+        bcrypt.compare(password, u.password, function (error, response) {
+          if (response == true) {
+            ssn = req.session;
+            ssn.user = u;
+            return res.redirect("/");
+          }
+          // else wrong password
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   //
+  res.render("login", { ERROR: true });
 });
 
 // REGISTER
