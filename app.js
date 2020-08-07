@@ -1,33 +1,42 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
-
-var session = require("express-session");
-app.use(session({ secret: "ONTERI" }));
-
 const mongoose = require("mongoose");
-
+const handlebars = require("express-handlebars");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
-const handlebars = require("express-handlebars");
-// environment varaibles
-require("dotenv").config();
+const session = require("express-session");
+const multer = require("multer");
+const isImage = require("is-image");
+const path = require("path");
 
 const modelData = require("./models/data");
 const mail = require("./services/mail");
-
 const User = require("./models/users");
+const Meal = require("./models/meal-packages");
 
+// environment varaibles
+require("dotenv").config();
 var ssn;
 
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: "uploads",
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+var upload = multer({ storage: storage });
+
+app.use(session({ secret: "ONTERI" }));
 app.use(express.static("public"));
-
 app.set("view engine", "hbs");
-
 // extract data from form in the POST request body.
 app.use(express.urlencoded({ extended: true }));
-
 app.engine(
   "hbs",
   handlebars({
@@ -114,15 +123,15 @@ app.get("/product", function (req, res) {
   res.render("product-detail");
 });
 
-// LOGIN
-app.get("/login", function (req, res) {
-  res.render("login");
-});
-
 // LOGOUT
 app.get("/logout", function (req, res) {
   ssn.user = null;
   res.redirect("/");
+});
+
+// LOGIN
+app.get("/login", function (req, res) {
+  res.render("login");
 });
 
 app.post("/login", function (req, res) {
@@ -328,6 +337,60 @@ app.post("/register", function (req, res) {
   //
 });
 
+// dasboard-upload
+app.get("/dasboard-upload", function (req, res) {
+  res.render("upload");
+});
+
+// dasboard-upload
+app.post("/upload", upload.single("myPhoto"), (req, res, next) => {
+  const file = req.file;
+  if (!file) {
+    return res.status(400).send("Please upload the product's image");
+  } else if (!isImage(file.path)) {
+    return res.status(400).send("Incorrect media type");
+  } else {
+    console.log(req.body);
+    var name = req.body.name;
+    var price = req.body.price;
+    var description = req.body.description;
+    var category = req.body.category;
+    var meals = req.body.meals;
+    var topPackage = false;
+    if (req.body.clerk) {
+      topPackage = true;
+    }
+
+    meal = new Meal({
+      _id: new mongoose.Types.ObjectId(),
+      name: name,
+      price: price,
+      description: description,
+      category: category,
+      meals: meals,
+      topPackage: topPackage,
+      photo: file.path,
+    });
+
+    meal
+      .save()
+      .then((obj) => {
+        console.log("User created");
+        console.log(obj);
+        res.send(file.path);
+      })
+      .catch((err) => {
+        return res.status(400).send("Error saving");
+      });
+  }
+});
+
+//
+//
+//
+//
+//
+// Connect db
 mongoose
   .connect(
     "mongodb+srv://" +
