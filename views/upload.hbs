@@ -1,0 +1,17 @@
+<div class="login-page">
+    <div class="form">
+        <form class="login-form {{ extraFormClasses }}" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="text" placeholder="name" name="name" value="{{ name }}" />
+            <input type="number" placeholder="price" name="price" value="{{ price }}" />
+            <input type="text" placeholder="description" name="description" value="{{ description }}" />
+            <input type="text" placeholder="category" name="category" value="{{ category }}" />
+            <input type="number" placeholder="meals" name="meals" value="{{ meals }}" />
+            <input type="file" accept="image/*" name="myPhoto">
+            <div>
+                <input type="checkbox" id="topPackage" name="topPackage" value="True">
+                <label for="topPackage">Top Package</label><br>
+            </div>
+            <button>Add Meal Package</button>
+        </form>
+    </div>
+</div>
