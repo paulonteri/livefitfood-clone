@@ -7,19 +7,24 @@
             <h5>
                 Items
             </h5>
+            <a href="/dashboard-upload">
+                Add Item
+            </a>
         </div>
 
         <div class="package-listing-packages">
             {{#each topMealPackages}}
-            <div class="package-listing-packages-container" id="{{ this.id }}">
-                <img src="{{ this.image }}" alt="{{ this.name }}" />
-                <h5>{{ this.name }}</h5>
-                <p>{{ this.description }}</p>
-                <div class="btn">
-                    <p>View Package</p>
+            <a href="./dashboard-upload/{{this._id}}/edit">
+                <div class="package-listing-packages-container" id="{{ this.id }}">
+                    <img src="{{ this.photo }}" alt="{{ this.name }}" />
+                    <h5>{{ this.name }}</h5>
+                    <p>{{ this.description }}</p>
+                    <div class="btn">
+                        <p>View Package</p>
+                    </div>
+                    <p><i>from</i> {{ this.price }}</p>
                 </div>
-                <p><i>from</i> {{ this.price }}</p>
-            </div>
+            </a>
             {{/each}}
         </div>
     </div>
