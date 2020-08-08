@@ -7,7 +7,7 @@
   <title>Best Website</title>
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
   <link
     href="//fonts.googleapis.com/css?family=.|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold|Open+Sans:light,normal,bold"
     rel="stylesheet" type="text/css" />
@@ -18,40 +18,40 @@
 <body>
   <div class="header" id="myHeader">
     <header class="site-header">
-      <a href="/" class="logo"><img src="images/healthy-food.png" width="40px" height="40px" alt="logo" /></a>
+      <a href="/" class="logo"><img src="/images/healthy-food.png" width="40px" height="40px" alt="logo" /></a>
 
       <nav class="site-nav hide-mobile">
         <ul>
           <li class="active"><a href="/">Home</a></li>
-          <li><a href="./package-listing">Packages</a></li>
-          <li><a href="./customer-dashboard">Dashboard</a></li>
+          <li><a href="/package-listing">Packages</a></li>
+          <li><a href="/customer-dashboard">Dashboard</a></li>
         </ul>
       </nav>
       {{#if firstName}}
 
       <div class="actions hide-mobile">
         <p>{{firstName}} {{lastName}}</p>
-        <a href="./logout" class="sign-out-link">Logout</a>
+        <a href="/logout" class="sign-out-link">Logout</a>
       </div>
       {{else}}
       <div class="actions hide-mobile">
-        <a href="./login" class="sign-out-link">Sign In</a>
+        <a href="/login" class="sign-out-link">Sign In</a>
       </div>
       {{/if}}
-      <span id="menu-icon" class="menu actions display-mobile"><img src="images/menu.png" width="40px" height="40px"
+      <span id="menu-icon" class="menu actions display-mobile"><img src="/images/menu.png" width="40px" height="40px"
           alt="logo" /></span>
     </header>
   </div>
   <div id="dropdown-menu">
     <a class="menu-item" href="/"> <span> Home</span></a>
-    <a class="menu-item" href="./package-listing"> <span> Packages</span></a>
-    <a class="menu-item" href="./login"><span> Sign In</span></a>
+    <a class="menu-item" href="/package-listing"> <span> Packages</span></a>
+    <a class="menu-item" href="/login"><span> Sign In</span></a>
   </div>
   <div class="content">{{{body}}}</div>
   <div class="footer">
     <p>© 2020 Yutope Inc.</p>
   </div>
-  <script src="./js/index.js"></script>
+  <script src="/js/index.js"></script>
 </body>
 
 </html>
