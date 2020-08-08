@@ -188,7 +188,8 @@ a:hover {
   text-decoration: none;
 }
 
-.btn-lg {
+.btn-lg,
+.package-listing-subheading a {
   background-color: #ea455a;
   color: #f2f2f2;
   text-align: center;
@@ -200,6 +201,10 @@ a:hover {
   border-radius: 5px;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.package-listing-subheading a {
+  margin-left: 50px;
 }
 
 .btn:hover,

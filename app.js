@@ -21,7 +21,7 @@ var ssn;
 
 // SET STORAGE
 var storage = multer.diskStorage({
-  destination: "uploads",
+  destination: "public/uploads",
   filename: function (req, file, cb) {
     cb(
       null,
@@ -61,6 +61,13 @@ app.engine(
   })
 );
 
+const mongooseToObj = (doc) => {
+  if (doc == null) {
+    return null;
+  }
+  return doc.toObject();
+};
+
 // HOME
 function getFoodList() {
   return modelData.topMeals;
@@ -84,40 +91,6 @@ app.get("/package-listing", function (req, res) {
   res.render("package-listing", { topMealPackages: modelData.topMealPackages });
 });
 
-// CUSTOMER DASHBOARD
-app.get("/customer-dashboard", function (req, res) {
-  if (ssn && ssn.user) {
-    if (ssn.user.isClerk) {
-      res.redirect("/clerk-dashboard");
-    } else {
-      res.render("customer-dashboard", {
-        topMealPackages: modelData.topMealPackages,
-        firstName: ssn.user.firstName,
-        lastName: ssn.user.lastName,
-      });
-    }
-  } else {
-    res.redirect("/login");
-  }
-});
-
-// CUSTOMER DASHBOARD
-app.get("/clerk-dashboard", function (req, res) {
-  if (ssn && ssn.user) {
-    if (ssn.user.isClerk) {
-      res.redirect("/customer-dashboard");
-    } else {
-      res.render("clerk-dashboard", {
-        topMealPackages: modelData.topMealPackages,
-        firstName: ssn.user.firstName,
-        lastName: ssn.user.lastName,
-      });
-    }
-  } else {
-    res.redirect("/login");
-  }
-});
-
 // PRODUCT DETAIL
 app.get("/product", function (req, res) {
   res.render("product-detail");
@@ -125,7 +98,9 @@ app.get("/product", function (req, res) {
 
 // LOGOUT
 app.get("/logout", function (req, res) {
-  ssn.user = null;
+  if (ssn && ssn.user) {
+    ssn.user = null;
+  }
   res.redirect("/");
 });
 
@@ -338,8 +313,22 @@ app.post("/register", function (req, res) {
 });
 
 // dasboard-upload
-app.get("/dasboard-upload", function (req, res) {
+app.get("/dashboard-upload", function (req, res) {
   res.render("upload");
+});
+
+// dasboard-upload
+app.get("/dashboard-upload/:id", function (req, res) {
+  var id = req.params.id;
+  Meal.findById(id)
+    .then((obj) => {
+      ml = mongooseToObj(obj);
+      ml.myPhoto = ml.photo;
+      res.render("upload", ml);
+    })
+    .catch((error) => {
+      return res.status(400).send("Not found");
+    });
 });
 
 // dasboard-upload
@@ -369,19 +358,103 @@ app.post("/upload", upload.single("myPhoto"), (req, res, next) => {
       category: category,
       meals: meals,
       topPackage: topPackage,
-      photo: file.path,
+      photo: file.path.replace("public", ""),
     });
 
     meal
       .save()
       .then((obj) => {
-        console.log("User created");
-        console.log(obj);
-        res.send(file.path);
+        res.redirect("/clerk-dashboard");
       })
       .catch((err) => {
         return res.status(400).send("Error saving");
       });
+  }
+});
+
+// dasboard-upload
+app.post("/upload/:id", upload.single("myPhoto"), (req, res, next) => {
+  const file = req.file;
+  if (!file) {
+    return res.status(400).send("Please upload the product's image");
+  } else if (!isImage(file.path)) {
+    return res.status(400).send("Incorrect media type");
+  } else {
+    console.log(req.body);
+    var name = req.body.name;
+    var price = req.body.price;
+    var description = req.body.description;
+    var category = req.body.category;
+    var meals = req.body.meals;
+    var topPackage = false;
+    if (req.body.clerk) {
+      topPackage = true;
+    }
+
+    meal = new Meal({
+      _id: new mongoose.Types.ObjectId(),
+      name: name,
+      price: price,
+      description: description,
+      category: category,
+      meals: meals,
+      topPackage: topPackage,
+      photo: file.path.replace("public", ""),
+    });
+
+    meal
+      .save()
+      .then((obj) => {
+        res.redirect("/clerk-dashboard");
+      })
+      .catch((err) => {
+        return res.status(400).send("Error saving");
+      });
+  }
+});
+
+// CLERK DASHBOARD
+app.get("/clerk-dashboard", function (req, res) {
+  if (ssn && ssn.user) {
+    if (!ssn || !ssn.user || !ssn.user.isClerk) {
+      res.redirect("/customer-dashboard");
+    } else {
+      var ml = [];
+      Meal.find({})
+        .then((meals) => {
+          meals.forEach((meal) => {
+            ml.push(mongooseToObj(meal));
+          });
+          res.render("clerk-dashboard", {
+            topMealPackages: ml,
+            firstName: ssn.user.firstName,
+            lastName: ssn.user.lastName,
+          });
+          console.log(meals);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  } else {
+    res.redirect("/login");
+  }
+});
+
+// CUSTOMER DASHBOARD
+app.get("/customer-dashboard", function (req, res) {
+  if (ssn && ssn.user) {
+    if (ssn && ssn.user && ssn.user.isClerk) {
+      res.redirect("/clerk-dashboard");
+    } else {
+      res.render("customer-dashboard", {
+        topMealPackages: modelData.topMealPackages,
+        firstName: ssn.user.firstName,
+        lastName: ssn.user.lastName,
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 });
 
